@@ -1,1 +1,5 @@
 rootProject.name = 'testers'
+include 'testers-api'
+include 'testers-admin-api'
+include 'testers-core'
+

@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+group = 'me.renedo.naizfit'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework:spring-context:6.1.4'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:3.2.3'
+    testImplementation 'io.projectreactor:reactor-test:3.6.3'
+    testImplementation 'org.assertj:assertj-core:3.25.3'
+    testImplementation 'org.jeasy:easy-random-core:5.0.0'
+}
+
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
