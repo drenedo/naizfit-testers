@@ -1,9 +1,11 @@
 package me.renedo.naizfit.testers.application;
 
 import static org.mockito.Mockito.verify;
-import static org.springframework.test.util.AssertionErrors.fail;
+
+import java.time.LocalDateTime;
 
 import org.assertj.core.api.Assertions;
+import org.assertj.core.api.recursive.comparison.RecursiveComparisonConfiguration;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
@@ -29,7 +31,10 @@ class CreateTesterUseCaseTest {
         // then
         ArgumentCaptor<TesterAggregate> captor = ArgumentCaptor.forClass(TesterAggregate.class);
         verify(repository).save(captor.capture());
-        Assertions.assertThat(captor.getValue()).usingRecursiveComparison().isEqualTo(TesterAggregateMother.from(command));
+        RecursiveComparisonConfiguration ignoreIdConfig = new RecursiveComparisonConfiguration();
+        ignoreIdConfig.ignoreFieldsOfTypes(LocalDateTime.class);
+        Assertions.assertThat(captor.getValue()).usingRecursiveComparison(ignoreIdConfig)
+                .isEqualTo(TesterAggregateMother.from(command));
     }
 
 }

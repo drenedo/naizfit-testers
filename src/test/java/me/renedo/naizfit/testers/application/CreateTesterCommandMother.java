@@ -9,7 +9,8 @@ import org.jeasy.random.EasyRandomParameters;
 
 public class CreateTesterCommandMother {
 
-    private final static EasyRandom easyRandom = new EasyRandom(new EasyRandomParameters());
+    private final static EasyRandom easyRandom = new EasyRandom(new EasyRandomParameters()
+            .dateRange(LocalDate.of(1800, 1, 1), LocalDate.now().minusYears(10)));
 
     public static CreateTesterCommand any() {
         return new CreateTesterCommand(UUID.randomUUID(), easyRandom.nextObject(String.class), "test@naiz.fit", easyRandom.nextObject(String.class),

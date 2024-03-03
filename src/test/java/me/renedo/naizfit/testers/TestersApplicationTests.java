@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class TestersApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void spring_should_run_ok() {
 	}
 
 }
