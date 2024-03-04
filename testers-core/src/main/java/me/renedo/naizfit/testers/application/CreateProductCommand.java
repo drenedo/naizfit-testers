@@ -10,6 +10,7 @@ public record CreateProductCommand(
     String sku,
     List<String> sizes,
     Set<URL> pictures,
+    String color,
     Brand brand
 ) {
 

@@ -13,7 +13,7 @@ class CreateProductCommandMother {
 
     public static CreateProductCommand any() {
         return new CreateProductCommand(UUID.randomUUID(), easyRandom.nextObject(String.class), easyRandom.objects(String.class, 3).toList(),
-                easyRandom.objects(URL.class, 3).collect(Collectors.toSet()),
+                easyRandom.objects(URL.class, 3).collect(Collectors.toSet()), easyRandom.nextObject(String.class),
                 new CreateProductCommand.Brand(UUID.randomUUID(), easyRandom.nextObject(String.class), easyRandom.nextObject(URL.class)));
     }
 

@@ -1,13 +1,13 @@
-package me.renedo.naizfit.testers.api;
+package me.renedo.naizfit;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TestersApiApplication {
+public class AdminApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TestersApiApplication.class, args);
+		SpringApplication.run(AdminApiApplication.class, args);
 	}
 
 }

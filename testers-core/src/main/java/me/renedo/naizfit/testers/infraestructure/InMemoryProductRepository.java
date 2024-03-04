@@ -5,23 +5,13 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
-import me.renedo.naizfit.testers.domain.ProductAggregate;
-import me.renedo.naizfit.testers.domain.ProductAggregateRepository;
+import me.renedo.naizfit.testers.domain.Product;
+import me.renedo.naizfit.testers.domain.ProductRepository;
 
 @Component
-public class InMemoryProductRepository implements ProductAggregateRepository {
+public class InMemoryProductRepository implements ProductRepository {
     @Override
-    public Optional<ProductAggregate> findById(UUID id) {
+    public Optional<Product> findById(UUID id) {
         return Optional.empty();
-    }
-
-    @Override
-    public void save(ProductAggregate productAggregate) {
-
-    }
-
-    @Override
-    public void delete(ProductAggregate productAggregate) {
-
     }
 }
