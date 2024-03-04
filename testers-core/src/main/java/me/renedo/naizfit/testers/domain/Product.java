@@ -16,13 +16,20 @@ public class Product {
 
     private final Brand brand;
 
-    public Product(UUID id, SKU sku, Sizes sizes, Set<URL> pictures, Brand brand) {
+    private final String color;
+
+    public Product(UUID id, SKU sku, Sizes sizes, Set<URL> pictures, Brand brand, String color) {
         this.id = id;
         this.sku = sku;
         this.sizes = sizes;
         this.pictures = pictures;
         this.brand = brand;
+        this.color = color;
         verify();
+    }
+
+    public String getColor() {
+        return color;
     }
 
     public UUID getId() {

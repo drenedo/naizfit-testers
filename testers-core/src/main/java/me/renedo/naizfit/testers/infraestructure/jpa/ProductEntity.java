@@ -15,6 +15,8 @@ public class ProductEntity {
     @Id
     private UUID id;
 
+    private String sku;
+
     private String sizes;
 
     private String pictures;
@@ -28,7 +30,8 @@ public class ProductEntity {
 
     }
 
-    public ProductEntity(UUID id, String sizes, String pictures, BrandEntity brand, String color) {
+    public ProductEntity(UUID id, String sku, String sizes, String pictures, BrandEntity brand, String color) {
+        this.sku = sku;
         this.id = id;
         this.sizes = sizes;
         this.pictures = pictures;
@@ -54,5 +57,9 @@ public class ProductEntity {
 
     public String getColor() {
         return color;
+    }
+
+    public String getSku() {
+        return sku;
     }
 }

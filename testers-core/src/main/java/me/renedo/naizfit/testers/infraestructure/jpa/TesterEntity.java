@@ -37,7 +37,8 @@ public class TesterEntity {
     public TesterEntity() {
     }
 
-    public TesterEntity(UUID id, String name, String email, String password, LocalDate birthDate, String sex, Integer testsDone) {
+    public TesterEntity(UUID id, String name, String email, String password, LocalDate birthDate, String sex, Integer testsDone,
+            Set<MeasureEntity> measures) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -45,6 +46,7 @@ public class TesterEntity {
         this.birthDate = birthDate;
         this.sex = sex;
         this.testsDone = testsDone;
+        this.measures = measures;
     }
 
     public UUID getId() {

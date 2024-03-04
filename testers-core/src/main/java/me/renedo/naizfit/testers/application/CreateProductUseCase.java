@@ -27,7 +27,8 @@ public class CreateProductUseCase {
 
     private ProductAggregate toDomain(CreateProductCommand command) {
         Brand brand = new Brand(command.brand().id(), new Name(command.brand().name()), command.brand().logo());
-        Product product = new Product(command.id(), new SKU(command.sku()), new Sizes(command.sizes().stream().map(Size::new).toList()), command.pictures(), brand);
+        Product product = new Product(command.id(), new SKU(command.sku()), new Sizes(command.sizes().stream().map(Size::new).toList()), command.pictures(), brand,
+                command.color());
         return new ProductAggregate(product);
     }
 }

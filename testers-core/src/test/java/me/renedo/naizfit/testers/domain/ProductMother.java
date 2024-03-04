@@ -22,7 +22,7 @@ public class ProductMother {
                 command.brand().id(),
                 new Name(command.brand().name()),
                 command.brand().logo()
-            )
-        );
+            ),
+                command.color());
     }
 }

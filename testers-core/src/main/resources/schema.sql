@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS measure
 (
     id   UUID PRIMARY KEY,
     tester_id UUID NOT NULL
+    creation_date TIMESTAMP NOT NULL,
     CONSTRAINT measure_tester_fk references tester (id),
     height DECIMAL(8, 2) NOT NULL,
     weight DECIMAL(8, 2) NOT NULL
@@ -28,6 +29,7 @@ CREATE TABLE IF NOT EXISTS brand
 CREATE TABLE IF NOT EXISTS product
 (
     id   UUID PRIMARY KEY,
+    sku TEXT NOT NULL,
     sizes TEXT NOT NULL,
     pictures TEXT NOT NULL,
     brand_id UUID NOT NULL

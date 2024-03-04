@@ -9,7 +9,7 @@ class ProductTest {
     @Test
     void should_throw_exception_when_product_has_no_id() {
         // when
-        assertThrows(ProductWithOutIdException.class, () -> new Product(null, SKUMother.any(), null, null, BrandMother.any()));
+        assertThrows(ProductWithOutIdException.class, () -> new Product(null, SKUMother.any(), null, null, BrandMother.any(), "Red"));
     }
 
 }
