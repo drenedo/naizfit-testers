@@ -9,7 +9,7 @@ import me.renedo.naizfit.testers.domain.Product;
 import me.renedo.naizfit.testers.domain.ProductRepository;
 
 @Component
-public class InMemoryProductRepository implements ProductRepository {
+public class JpaMemoryProductRepository implements ProductRepository {
     @Override
     public Optional<Product> findById(UUID id) {
         return Optional.empty();

@@ -9,7 +9,7 @@ import me.renedo.naizfit.testers.domain.Tester;
 import me.renedo.naizfit.testers.domain.TesterRepository;
 
 @Component
-public class InMemoryTesterRepository implements TesterRepository {
+public class JpaMemoryTesterRepository implements TesterRepository {
     @Override
     public Optional<Tester> findById(UUID id) {
         return Optional.empty();

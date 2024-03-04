@@ -6,7 +6,7 @@ import me.renedo.naizfit.testers.domain.TestAggregate;
 import me.renedo.naizfit.testers.domain.TestAggregateRepository;
 
 @Component
-public class InMemoryTestAggregateRepository implements TestAggregateRepository {
+public class JpaMemoryTestAggregateRepository implements TestAggregateRepository {
     @Override
     public void save(TestAggregate testAggregate) {
 
