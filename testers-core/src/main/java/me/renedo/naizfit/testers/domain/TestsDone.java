@@ -18,4 +18,8 @@ public class TestsDone {
             throw new TestsDoneInvalidException();
         }
     }
+
+    public TestsDone increase() {
+        return new TestsDone(value + 1);
+    }
 }

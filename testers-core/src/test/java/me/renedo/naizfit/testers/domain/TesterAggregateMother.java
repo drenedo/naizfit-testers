@@ -3,7 +3,7 @@ package me.renedo.naizfit.testers.domain;
 import org.jeasy.random.EasyRandom;
 import org.jeasy.random.EasyRandomParameters;
 
-import me.renedo.naizfit.testers.application.CreateTesterCommand;
+import me.renedo.naizfit.testers.application.tester.CreateTesterCommand;
 
 public class TesterAggregateMother {
 

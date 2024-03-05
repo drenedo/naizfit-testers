@@ -1,5 +1,7 @@
 package me.renedo.naizfit.testers.application;
 
+import me.renedo.naizfit.testers.application.test.CreateTestCommand;
+import me.renedo.naizfit.testers.application.test.TestCreatedCommand;
 import me.renedo.naizfit.testers.domain.Product;
 
 public class TestCreatedCommandMother {

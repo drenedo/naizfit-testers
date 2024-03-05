@@ -1,4 +1,4 @@
-package me.renedo.naizfit.testers.application;
+package me.renedo.naizfit.testers.application.test;
 
 import java.util.UUID;
 

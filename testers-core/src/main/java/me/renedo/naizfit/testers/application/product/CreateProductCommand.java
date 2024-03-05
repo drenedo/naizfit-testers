@@ -1,4 +1,4 @@
-package me.renedo.naizfit.testers.application;
+package me.renedo.naizfit.testers.application.product;
 
 import java.net.URL;
 import java.util.List;

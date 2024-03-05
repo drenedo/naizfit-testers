@@ -1,4 +1,4 @@
-package me.renedo.naizfit.testers.application;
+package me.renedo.naizfit.testers.application.tester;
 
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
@@ -24,6 +24,6 @@ public class DeleteTesterUseCase {
         repository.delete(testerAggregate);
         //TODO think about this
         eventPublisher.publishEvent(
-                new TesterDeletedCommand(testerAggregate.getTester().getId()));
+                new TesterDeletedCommand(testerAggregate.getTesterId()));
     }
 }

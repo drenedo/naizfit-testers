@@ -12,23 +12,40 @@ import jakarta.persistence.Table;
 @Table(name = "test")
 public class TestEntity {
 
-    /*
-    id   UUID PRIMARY KEY,
-    tester_id UUID NOT NULL
-    CONSTRAINT test_tester_fk references tester (id),
-    product_id UUID NOT NULL
-    CONSTRAINT test_product_fk references product (id),
-    size TEXT NOT NULL
-     */
-
     @Id
     private UUID id;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private TesterEntity tester;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private ProductEntity product;
 
     private String size;
+
+    public TestEntity() {
+    }
+
+    public TestEntity(UUID id, TesterEntity tester, ProductEntity product, String size) {
+        this.id = id;
+        this.tester = tester;
+        this.product = product;
+        this.size = size;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public TesterEntity getTester() {
+        return tester;
+    }
+
+    public ProductEntity getProduct() {
+        return product;
+    }
+
+    public String getSize() {
+        return size;
+    }
 }

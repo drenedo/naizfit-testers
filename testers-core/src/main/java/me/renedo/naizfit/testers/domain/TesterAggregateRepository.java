@@ -10,4 +10,7 @@ public interface TesterAggregateRepository {
     void save(TesterAggregate testerAggregate);
 
     void delete(TesterAggregate testerAggregate);
+
+    void update(TesterAggregate testerAggregate);
+
 }

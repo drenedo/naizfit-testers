@@ -1,4 +1,4 @@
-package me.renedo.naizfit.testers.application;
+package me.renedo.naizfit.testers.application.tester;
 
 import java.time.LocalDate;
 import java.util.Set;

@@ -1,9 +1,7 @@
 package me.renedo.naizfit.testers.infraestructure;
 
 import java.util.Optional;
-import java.util.Set;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
@@ -12,6 +10,7 @@ import me.renedo.naizfit.testers.domain.TesterAggregate;
 import me.renedo.naizfit.testers.domain.TesterAggregateRepository;
 import me.renedo.naizfit.testers.infraestructure.jpa.MeasureEntity;
 import me.renedo.naizfit.testers.infraestructure.jpa.MeasureEntityRepository;
+import me.renedo.naizfit.testers.infraestructure.jpa.TesterEntity;
 import me.renedo.naizfit.testers.infraestructure.jpa.TesterEntityRepository;
 
 @Component
@@ -33,19 +32,26 @@ public class JpaTesterAggregateRepository implements TesterAggregateRepository {
 
     @Override
     public void save(TesterAggregate testerAggregate) {
-        Set<MeasureEntity> measureEntities = testerAggregate.getTester().getMeasures().stream()
-                .map(this::findOrCreateMeasureEntity)
-                .collect(Collectors.toSet());
-        testerEntityRepository.save(DomainEntityMapper.toTesterEntity(testerAggregate.getTester(), measureEntities));
+        TesterEntity testerEntity = testerEntityRepository.save(DomainEntityMapper.toTesterEntity(testerAggregate.getTester()));
+        testerAggregate.getTester().getMeasures()
+                .forEach(m -> findOrCreateMeasureEntity(m, testerEntity));
     }
 
-    private MeasureEntity findOrCreateMeasureEntity(Measure measure) {
+    private MeasureEntity findOrCreateMeasureEntity(Measure measure, TesterEntity testerEntity) {
         return measureEntityRepository.findById(measure.getId())
-                .orElseGet(() -> measureEntityRepository.save(DomainEntityMapper.toMeasureEntity(measure)));
+                .orElseGet(() -> measureEntityRepository.save(DomainEntityMapper.toMeasureEntity(measure, testerEntity)));
     }
 
     @Override
     public void delete(TesterAggregate testerAggregate) {
-        testerEntityRepository.deleteById(testerAggregate.getTester().getId());
+        testerAggregate.getTester().getMeasures().forEach(m -> measureEntityRepository.deleteById(m.getId()));
+        testerEntityRepository.deleteById(testerAggregate.getTesterId());
+    }
+
+    @Override
+    public void update(TesterAggregate testerAggregate) {
+        TesterEntity testerEntity = testerEntityRepository.save(DomainEntityMapper.toTesterEntity(testerAggregate.getTester()));
+        testerAggregate.getTester().getMeasures().forEach(m -> measureEntityRepository.save(DomainEntityMapper.toMeasureEntity(m, testerEntity)));
+
     }
 }

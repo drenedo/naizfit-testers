@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
+import me.renedo.naizfit.testers.application.product.CreateProductCommand;
+import me.renedo.naizfit.testers.application.product.CreateProductUseCase;
 import me.renedo.naizfit.testers.domain.ProductAggregate;
 import me.renedo.naizfit.testers.domain.ProductAggregateMother;
 import me.renedo.naizfit.testers.domain.ProductAggregateRepository;

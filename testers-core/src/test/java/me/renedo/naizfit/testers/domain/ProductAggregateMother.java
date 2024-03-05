@@ -2,7 +2,7 @@ package me.renedo.naizfit.testers.domain;
 
 import org.jeasy.random.EasyRandom;
 
-import me.renedo.naizfit.testers.application.CreateProductCommand;
+import me.renedo.naizfit.testers.application.product.CreateProductCommand;
 
 public class ProductAggregateMother {
 

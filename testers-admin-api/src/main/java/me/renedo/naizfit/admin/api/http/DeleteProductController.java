@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import me.renedo.naizfit.testers.application.DeleteProductCommand;
-import me.renedo.naizfit.testers.application.DeleteProductUseCase;
+import me.renedo.naizfit.testers.application.product.DeleteProductCommand;
+import me.renedo.naizfit.testers.application.product.DeleteProductUseCase;
 
 @RestController
 @Tag(name = "Product", description = "Product API")

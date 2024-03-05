@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
+import me.renedo.naizfit.testers.application.tester.CreateTesterCommand;
+import me.renedo.naizfit.testers.application.tester.CreateTesterUseCase;
 import me.renedo.naizfit.testers.domain.TesterAggregate;
 import me.renedo.naizfit.testers.domain.TesterAggregateMother;
 import me.renedo.naizfit.testers.domain.TesterAggregateRepository;

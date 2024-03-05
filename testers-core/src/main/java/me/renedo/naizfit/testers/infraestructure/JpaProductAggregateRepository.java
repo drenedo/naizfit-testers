@@ -10,6 +10,7 @@ import me.renedo.naizfit.testers.domain.ProductAggregateRepository;
 import me.renedo.naizfit.testers.infraestructure.jpa.BrandEntity;
 import me.renedo.naizfit.testers.infraestructure.jpa.BrandEntityRepository;
 import me.renedo.naizfit.testers.infraestructure.jpa.ProductEntityRepository;
+import me.renedo.naizfit.testers.infraestructure.jpa.TestEntityRepository;
 
 @Component
 public class JpaProductAggregateRepository implements ProductAggregateRepository {
@@ -17,10 +18,13 @@ public class JpaProductAggregateRepository implements ProductAggregateRepository
 
     private final ProductEntityRepository productEntityRepository;
 
+    private final TestEntityRepository testEntityRepository;
+
     private final BrandEntityRepository brandEntityRepository;
 
-    public JpaProductAggregateRepository(ProductEntityRepository productEntityRepository, BrandEntityRepository brandEntityRepository) {
+    public JpaProductAggregateRepository(ProductEntityRepository productEntityRepository, TestEntityRepository testEntityRepository, BrandEntityRepository brandEntityRepository) {
         this.productEntityRepository = productEntityRepository;
+        this.testEntityRepository = testEntityRepository;
         this.brandEntityRepository = brandEntityRepository;
     }
 
@@ -38,6 +42,7 @@ public class JpaProductAggregateRepository implements ProductAggregateRepository
 
     @Override
     public void delete(ProductAggregate productAggregate) {
-        productEntityRepository.deleteById(productAggregate.getProduct().getId());
+        testEntityRepository.deleteAll(testEntityRepository.findByProductId(productAggregate.getProductId()));
+        productEntityRepository.deleteById(productAggregate.getProductId());
     }
 }

@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import me.renedo.naizfit.testers.domain.BirthDate;
@@ -19,21 +18,41 @@ import me.renedo.naizfit.testers.domain.SKU;
 import me.renedo.naizfit.testers.domain.Sex;
 import me.renedo.naizfit.testers.domain.Size;
 import me.renedo.naizfit.testers.domain.Sizes;
+import me.renedo.naizfit.testers.domain.Test;
+import me.renedo.naizfit.testers.domain.TestAggregate;
 import me.renedo.naizfit.testers.domain.Tester;
 import me.renedo.naizfit.testers.domain.TesterAggregate;
 import me.renedo.naizfit.testers.domain.TestsDone;
 import me.renedo.naizfit.testers.infraestructure.jpa.BrandEntity;
 import me.renedo.naizfit.testers.infraestructure.jpa.MeasureEntity;
 import me.renedo.naizfit.testers.infraestructure.jpa.ProductEntity;
+import me.renedo.naizfit.testers.infraestructure.jpa.TestEntity;
 import me.renedo.naizfit.testers.infraestructure.jpa.TesterEntity;
 
 public class DomainEntityMapper {
 
     private final static String SEPARATOR = ",";
 
-    public static MeasureEntity toMeasureEntity(Measure measure) {
-        return new MeasureEntity(measure.getId(), measure.getCreationDate(), null,
+    public static MeasureEntity toMeasureEntity(Measure measure, TesterEntity tester) {
+        return new MeasureEntity(measure.getId(), measure.getCreationDate(), tester,
                 BigDecimal.valueOf(measure.getWeight().getValue()), BigDecimal.valueOf(measure.getHeight().getValue()));
+    }
+
+    public static Product toProduct(ProductEntity productEntity) {
+        return new Product(productEntity.getId(), new SKU(productEntity.getSku()),
+                new Sizes(Arrays.stream(productEntity.getSizes().split(SEPARATOR)).map(Size::new).collect(Collectors.toList())),
+                Arrays.stream(productEntity.getPictures().split(SEPARATOR)).map(DomainEntityMapper::toURL).collect(Collectors.toSet()),
+                new Brand(productEntity.getBrand().getId(), new Name(productEntity.getBrand().getName()), toURL(productEntity.getBrand().getLogo())),
+                productEntity.getColor());
+    }
+
+    public static TestAggregate toTestAggregate(TestEntity testerEntity) {
+        return new TestAggregate(new Test(testerEntity.getId(), toTester(testerEntity.getTester()), toProduct(testerEntity.getProduct()),
+                        new Size(testerEntity.getSize())));
+    }
+
+    public static TestEntity toTestEntity(Test test, ProductEntity productEntity, TesterEntity testerEntity) {
+        return new TestEntity(test.getId(), testerEntity, productEntity, test.getSize().getValue());
     }
 
     public static TesterAggregate toTesterAggregate(TesterEntity testerEntity) {
@@ -41,7 +60,7 @@ public class DomainEntityMapper {
     }
 
     public static Tester toTester(TesterEntity testerEntity) {
-        return new Tester(testerEntity.getId(), new Name(testerEntity.getName()), new Email(testerEntity.getEmail()), null,
+        return new Tester(testerEntity.getId(), new Name(testerEntity.getName()), new Email(testerEntity.getEmail()), testerEntity.getPassword(),
                 new BirthDate(testerEntity.getBirthDate()),
                 testerEntity.getSex().equals("M") ? Sex.MALE : Sex.FEMALE, new TestsDone(testerEntity.getTestsDone()),
                 testerEntity.getMeasures().stream().map(DomainEntityMapper::toMeasure).toList());
@@ -63,16 +82,12 @@ public class DomainEntityMapper {
     }
 
     public static ProductAggregate toProductAggregate(ProductEntity productEntity) {
-        return new ProductAggregate(new Product(productEntity.getId(), new SKU(productEntity.getSku()),
-                new Sizes(Arrays.stream(productEntity.getSizes().split(SEPARATOR)).map(Size::new).collect(Collectors.toList())),
-                Arrays.stream(productEntity.getPictures().split(SEPARATOR)).map(DomainEntityMapper::toURL).collect(Collectors.toSet()),
-                new Brand(productEntity.getBrand().getId(), new Name(productEntity.getBrand().getName()), toURL(productEntity.getBrand().getLogo())),
-                productEntity.getColor()));
+        return new ProductAggregate(toProduct(productEntity));
     }
 
-    public static TesterEntity toTesterEntity(Tester tester, Set<MeasureEntity> measureEntities) {
+    public static TesterEntity toTesterEntity(Tester tester) {
         return new TesterEntity(tester.getId(), tester.getName().getValue(), tester.getEmail().getValue(), tester.getPassword(),
-                tester.getBirthDate().getValue(), tester.getSex().equals(Sex.MALE) ? "M" : "F", tester.getTestsDone().getValue(), measureEntities);
+                tester.getBirthDate().getValue(), tester.getSex().equals(Sex.MALE) ? "M" : "F", tester.getTestsDone().getValue(), null);
     }
 
     private static URL toURL(String s) {

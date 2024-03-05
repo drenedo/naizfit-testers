@@ -1,5 +1,7 @@
 package me.renedo.naizfit.testers.domain;
 
+import java.util.UUID;
+
 public class ProductAggregate {
 
     private final Product product;
@@ -10,5 +12,9 @@ public class ProductAggregate {
 
     public Product getProduct() {
         return product;
+    }
+
+    public UUID getProductId(){
+        return product.getId();
     }
 }

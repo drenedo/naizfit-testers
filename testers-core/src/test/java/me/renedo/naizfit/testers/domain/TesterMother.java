@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import org.jeasy.random.EasyRandom;
 
-import me.renedo.naizfit.testers.application.CreateTesterCommand;
+import me.renedo.naizfit.testers.application.tester.CreateTesterCommand;
 
 public class TesterMother {
 

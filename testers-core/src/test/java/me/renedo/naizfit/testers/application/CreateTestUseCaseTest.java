@@ -10,6 +10,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.context.ApplicationEventPublisher;
 
+import me.renedo.naizfit.testers.application.product.ProductNotFoundException;
+import me.renedo.naizfit.testers.application.test.CreateTestCommand;
+import me.renedo.naizfit.testers.application.test.CreateTestUseCase;
+import me.renedo.naizfit.testers.application.tester.TesterNotFoundException;
 import me.renedo.naizfit.testers.domain.Product;
 import me.renedo.naizfit.testers.domain.ProductMother;
 import me.renedo.naizfit.testers.domain.ProductRepository;

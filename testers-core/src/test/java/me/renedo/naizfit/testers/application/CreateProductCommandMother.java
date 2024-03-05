@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import org.jeasy.random.EasyRandom;
 import org.jeasy.random.EasyRandomParameters;
 
+import me.renedo.naizfit.testers.application.product.CreateProductCommand;
+
 class CreateProductCommandMother {
 
     private final static EasyRandom easyRandom = new EasyRandom(new EasyRandomParameters());

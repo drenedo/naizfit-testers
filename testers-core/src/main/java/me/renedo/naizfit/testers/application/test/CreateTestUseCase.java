@@ -1,8 +1,10 @@
-package me.renedo.naizfit.testers.application;
+package me.renedo.naizfit.testers.application.test;
 
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 
+import me.renedo.naizfit.testers.application.product.ProductNotFoundException;
+import me.renedo.naizfit.testers.application.tester.TesterNotFoundException;
 import me.renedo.naizfit.testers.domain.ProductRepository;
 import me.renedo.naizfit.testers.domain.Size;
 import me.renedo.naizfit.testers.domain.Test;
@@ -32,7 +34,7 @@ public class CreateTestUseCase {
     public void execute(CreateTestCommand command) {
         TestAggregate testAggregate = toDomain(command);
         testRepository.save(testAggregate);
-        eventPublisher.publishEvent(new TestCreatedCommand(testAggregate.getTest().getId(), testAggregate.getTest().getTester().getId()));
+        eventPublisher.publishEvent(new TestCreatedCommand(testAggregate.getTestId(), testAggregate.getTesterId()));
     }
 
     private TestAggregate toDomain(CreateTestCommand command) {

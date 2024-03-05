@@ -1,13 +1,12 @@
-package me.renedo.naizfit.testers.application;
+package me.renedo.naizfit.testers.application.tester;
 
 import java.util.UUID;
 
 public class TesterNotFoundException extends RuntimeException{
 
-    private final UUID id;
 
     public TesterNotFoundException(UUID id) {
-        this.id = id;
+        super("Tester with id " + id + " not found");
     }
 
     public static TesterNotFoundException withId(UUID id) {

@@ -10,6 +10,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.context.ApplicationEventPublisher;
 
+import me.renedo.naizfit.testers.application.tester.DeleteTesterCommand;
+import me.renedo.naizfit.testers.application.tester.DeleteTesterUseCase;
+import me.renedo.naizfit.testers.application.tester.TesterNotFoundException;
 import me.renedo.naizfit.testers.domain.TesterAggregate;
 import me.renedo.naizfit.testers.domain.TesterAggregateMother;
 import me.renedo.naizfit.testers.domain.TesterAggregateRepository;
