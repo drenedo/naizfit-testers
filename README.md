@@ -3,12 +3,41 @@
 ## Requirements
 
 - Java >= 17
+- Gradle is not mandatory you can use the gradle wrapper
+- Any container runtime (Docker, Podman, Minikube...) for testing phase.
 
-## Swagger documentation for both applications
+## Extructure of the project
+
+The project is divided in three modules: **[testers-core](testers-core)**, **[testers-api](testers-api)** and **[testers-admin-api](testers-admin-api)**. 
+The modules helps to scale the application and to separate the domain logic from the infrastructure logic. Also testers-core could be used as another application in the future.
+
+The project is developed following an hexagonal architecture. The main idea is to separate the domain logic from the infrastructure logic.
+In some use cases whe use domain events to communicate between different use cases.
+
+
+### testers-core
+
+This module contains the domain logic of the application, and the repository infrastructure. It is the core of the application.
+
+### testers-api
+
+This module contains the infrastructure logic of the application. It is the entry point of the application for the users.
+
+### testers-admin-api
+
+This module contains the infrastructure logic of the application. It is the entry point of the application for the admin users.
+
+### Swagger documentation for both applications
+
+You could find the swagger documentation in the following url:
 
 http://instance/webjars/swagger-ui/index.html
 
-### Examples of post bodies
+## Testing
+
+The project is prepared to be tested with JUnit 5 and Mockito. The database is deployed in a container managed by testcontainers library for testing phases.
+
+### Examples of post bodies to help in manual testing
 
 Tester body
 ```json
@@ -53,14 +82,12 @@ Product body
 }
 ```
 
-### Pending
+### Pending ideas
 
-- Documentation
-- Update test needs to update tester dones
-- Dockerization
-- Testing
-- Read and Update
-- Domain events
+- Documentation.
+- Dockerization.
+- Testing e2e.
+- Read and Update operations in CRUD.
 - Optimization based in AOT, GraalVM needed. [More info](
   https://docs.spring.io/spring-boot/docs/current/reference/html/native-image.html)
 
