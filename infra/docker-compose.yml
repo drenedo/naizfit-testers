@@ -1,0 +1,38 @@
+version: '3.1'
+services:
+  admin-api:
+    image: renedo.me.testers-admin-api/naizfit:latest
+    depends_on:
+      - db
+    links:
+      - db
+    environment:
+      - "SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/naizfit"
+      - "SPRING_DATASOURCE_USERNAME=naizfit"
+      - "SPRING_DATASOURCE_PASSWORD=naizfit"
+    ports:
+      - "8084:8080"
+  tester-api:
+    image: renedo.me.testers-api/naizfit:latest
+    depends_on:
+      - db
+    links:
+      - db
+    environment:
+      - "SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/naizfit"
+      - "SPRING_DATASOURCE_USERNAME=naizfit"
+      - "SPRING_DATASOURCE_PASSWORD=naizfit"
+    ports:
+      - "8085:8080"
+  db:
+    image: postgres:latest
+    restart: always
+    hostname: db
+    environment:
+      - "POSTGRES_PASSWORD=naizfit"
+      - "POSTGRES_USER=naizfit"
+      - "POSTGRES_DB=naizfit"
+    volumes:
+      - ../testers-core/src/main/resources/schema.sql:/docker-entrypoint-initdb.d/create-naizfit.sql
+    ports:
+      - "5439:5432"

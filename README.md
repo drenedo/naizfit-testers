@@ -33,6 +33,11 @@ You could find the swagger documentation in the following url:
 
 http://instance/webjars/swagger-ui/index.html
 
+## Persistence
+
+The project uses a PostgreSQL database. The database is deployed in a container managed by testcontainers library for testing phases. 
+Also the same database is used in the production phase. See [schema.sql](testers-core%2Fsrc%2Fmain%2Fresources%2Fschema.sql) of the database to know more about the data structure.
+
 ## Testing
 
 The project is prepared to be tested with JUnit 5 and Mockito. The database is deployed in a container managed by testcontainers library for testing phases.
@@ -82,12 +87,33 @@ Product body
 }
 ```
 
+## Run the project with docker
+
+You can run the project with docker using the following seps.
+
+1. First you need to build the project.
+```shell
+~/testers$ ./gradlew build
+```
+2. Then run the script to build the docker images and launch the containers.
+```shell
+~/testers$ cd infra
+~/testers/infra$ ./run.sh
+```
+
+## TODOs and improvements
+
 ### Pending ideas
 
-- Documentation.
-- Dockerization.
-- Testing e2e.
-- Read and Update operations in CRUD.
+- Better documentation.
+- Run sonarqube.
+- Testing e2e and more unit tests.
+- Read and Update operations in CRUD for admin apps. 
 - Optimization based in AOT, GraalVM needed. [More info](
   https://docs.spring.io/spring-boot/docs/current/reference/html/native-image.html)
+
+### Better design decisions
+
+- Permissions in use cases.
+- More domain events, there are only one.
 
